@@ -7,7 +7,8 @@
     "setup": "node src/setup.js",
     "balance": "node src/balance.js",
     "transfer": "node src/transfer.js",
-    "contract": "node src/contract.js"
+    "contract": "node src/contract.js",
+    "swap": "node src/swap.js"
   },
   "dependencies": {
     "viem": "^2.21.54"

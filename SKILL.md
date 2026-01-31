@@ -12,6 +12,7 @@ This skill provides a complete EVM wallet implementation with support for:
 - ✅ Native token transfers (ETH)
 - ✅ ERC20 token transfers
 - ✅ Generic contract interactions
+- ✅ Token swaps via Odos aggregator (best-route DEX aggregation)
 - ✅ Smart gas estimation (EIP-1559)
 - ✅ Multi-chain support (Base, Ethereum, Polygon, Arbitrum, Optimism)
 
@@ -84,6 +85,27 @@ node src/contract.js base 0x456... "approve(address,uint256)" 0x123... 100000000
 node src/contract.js ethereum 0x789... "deposit()" --value 0.1
 ```
 
+### Token Swaps (Odos Aggregator)
+```bash
+# Swap ETH → USDC on Base
+node src/swap.js base eth 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 0.01
+
+# Swap USDC → ETH on Base
+node src/swap.js base 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 eth 100
+
+# Custom slippage (1%)
+node src/swap.js base eth 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 0.01 --slippage 1
+
+# Quote only (no execution)
+node src/swap.js base eth 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 0.01 --quote-only
+
+# Skip confirmation
+node src/swap.js base eth 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 0.01 --yes
+
+# JSON output
+node src/swap.js base eth 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 0.01 --json
+```
+
 ## Security Features
 
 - 🔒 Private key stored locally with 600 permissions
@@ -110,8 +132,6 @@ node src/contract.js ethereum 0x789... "deposit()" --value 0.1
 - **Error Handling:** Comprehensive validation and user-friendly errors
 
 ## Future Enhancements (Not Built Yet)
-
-- 🔄 Token swaps via DEX aggregators
 - 🏦 DeFi protocol integrations
 - 📊 Portfolio tracking and analytics
 - 🔐 Hardware wallet support
@@ -122,6 +142,7 @@ node src/contract.js ethereum 0x789... "deposit()" --value 0.1
 
 - **Runtime:** Node.js
 - **EVM Library:** viem (modern, lightweight, typed)
+- **DEX Aggregator:** Odos (multi-hop, multi-source routing)
 - **Chains:** Public RPC endpoints with automatic failover
 - **Gas:** Smart EIP-1559 estimation
 - **Security:** Local key storage, confirmation prompts

@@ -48,6 +48,7 @@ node src/contract.js base 0x... "balanceOf(address)" 0x...
 | `node src/balance.js --all` | Check balance across all chains |
 | `node src/transfer.js <chain> <to> <amount>` | Send native token (ETH/POL) |
 | `node src/transfer.js <chain> <to> <amount> <token>` | Send ERC20 token |
+| `node src/swap.js <chain> <from> <to> <amount>` | Swap tokens via Odos aggregator |
 | `node src/contract.js <chain> <addr> <fn> [args...]` | Call any contract function |
 
 All commands support `--json` for machine-readable output.
@@ -121,6 +122,7 @@ User request
 
 - **Runtime:** [Node.js](https://nodejs.org)
 - **EVM library:** [viem](https://viem.sh) — lightweight, typed, modern
+- **DEX aggregator:** [Odos](https://odos.xyz) — multi-hop, multi-source routing
 - **RPCs:** Public endpoints (no API keys)
 
 ## Roadmap
