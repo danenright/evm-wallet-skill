@@ -1,0 +1,18 @@
+{
+  "name": "evm-wallet-skill",
+  "version": "1.0.0",
+  "description": "Self-sovereign EVM wallet for Clawdbot",
+  "type": "module",
+  "scripts": {
+    "setup": "bun src/setup.js",
+    "balance": "bun src/balance.js",
+    "transfer": "bun src/transfer.js",
+    "contract": "bun src/contract.js"
+  },
+  "dependencies": {
+    "viem": "^2.21.54"
+  },
+  "keywords": ["wallet", "ethereum", "evm", "crypto", "clawdbot"],
+  "author": "Clawdbot",
+  "license": "MIT"
+}
