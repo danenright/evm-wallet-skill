@@ -100,8 +100,8 @@ bun src/contract.js ethereum 0x789... "deposit()" --value 0.1
 - **wallet.js** - Wallet state management
 - **gas.js** - EIP-1559 gas estimation
 
-### Storage (`state/`)
-- **wallet.json** - Encrypted wallet (chmod 600)
+### Wallet Storage
+- **`~/.evm-wallet.json`** — Wallet keys stored in user's home directory (chmod 600, never in project)
 
 ### Key Features
 - **Multi-RPC Failover:** Automatic rotation between public RPCs
@@ -171,5 +171,5 @@ bun src/contract.js base 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 "allowance(a
 - Test with small amounts first
 - Use Base for testing (lowest fees)
 - Verify recipient addresses
-- Keep your `state/wallet.json` file secure
+- Keep your `~/.evm-wallet.json` file secure
 - Back up your wallet file!

@@ -4,17 +4,14 @@
  */
 
 import { existsSync, readFileSync, writeFileSync, chmodSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
+import { homedir } from 'os';
 import { createWalletClient, http } from 'viem';
 import { privateKeyToAccount, generatePrivateKey } from 'viem/accounts';
 import { getChain } from './chains.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Path to wallet state file
-const WALLET_PATH = join(__dirname, '../../state/wallet.json');
+// Wallet lives in user's home directory — never in the project
+const WALLET_PATH = join(homedir(), '.evm-wallet.json');
 
 /**
  * Generate a new wallet
@@ -61,12 +58,6 @@ export function load() {
  */
 export function save(wallet) {
   try {
-    // Ensure directory exists
-    const dir = dirname(WALLET_PATH);
-    if (!existsSync(dir)) {
-      throw new Error(`State directory does not exist: ${dir}`);
-    }
-    
     const data = JSON.stringify(wallet, null, 2);
     writeFileSync(WALLET_PATH, data, 'utf8');
     

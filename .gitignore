@@ -1,0 +1,4 @@
+node_modules/
+state/
+*.lock
+.DS_Store

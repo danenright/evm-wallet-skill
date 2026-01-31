@@ -76,10 +76,9 @@ evm-wallet-skill/
 │   ├── balance.js        # Check balances
 │   ├── transfer.js       # Send tokens
 │   └── contract.js       # Generic contract interaction
-├── state/
-│   └── wallet.json       # Private key (chmod 600, gitignored)
 ├── SKILL.md              # Agent skill definition
 └── package.json
+# Wallet: ~/.evm-wallet.json (private key, chmod 600, never in project)
 ```
 
 ### Core Libraries
@@ -88,7 +87,7 @@ evm-wallet-skill/
 
 **`rpc.js`** — Creates [viem](https://viem.sh) public and wallet clients with automatic RPC failover. If one RPC fails, it rotates to the next. No API keys required — uses public endpoints from Chainlist.
 
-**`wallet.js`** — Handles wallet lifecycle. Generates a new private key via viem's `generatePrivateKey()`, stores it in `state/wallet.json` with `chmod 600` permissions. Loads the key and returns viem account/client objects for signing transactions.
+**`wallet.js`** — Handles wallet lifecycle. Generates a new private key via viem's `generatePrivateKey()`, stores it at `~/.evm-wallet.json` with `chmod 600` permissions. Loads the key and returns viem account/client objects for signing transactions.
 
 **`gas.js`** — Smart EIP-1559 gas estimation. Analyzes the last 20 blocks to calculate optimal `maxFeePerGas` and `maxPriorityFeePerGas`:
 - Fetches current `baseFeePerGas` from the latest block
@@ -112,9 +111,9 @@ User request
 
 ### Security
 
-- **Private key never leaves the machine** — stored in `state/wallet.json` with `chmod 600`
+- **Private key never leaves the machine** — stored at `~/.evm-wallet.json` with `chmod 600`
 - **Never logged or printed** — the key is loaded in memory only when signing
-- **Gitignored** — `state/` directory is excluded from version control
+- **Never in the project** — wallet lives in user's home dir, not in version control
 - **No external custody** — no API keys, no third-party wallets, no accounts
 - **Balance validation** — checks sufficient funds before broadcasting
 
