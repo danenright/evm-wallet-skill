@@ -394,11 +394,12 @@ async function main() {
       console.log('⏳ Sending swap transaction...');
     }
 
+    const gasParam = tx.gas && BigInt(tx.gas) > 0n ? BigInt(tx.gas) : undefined;
     const txHash = await walletClient.sendTransaction({
       to: tx.to,
       data: tx.data,
       value: BigInt(tx.value),
-      gas: tx.gas ? BigInt(tx.gas) : undefined
+      gas: gasParam
     });
 
     // Wait for receipt
