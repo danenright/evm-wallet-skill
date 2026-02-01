@@ -92,6 +92,24 @@ export const chains = {
       "https://optimism.llamarpc.com",
       "https://rpc.ankr.com/optimism"
     ]
+  },
+  
+  megaeth: {
+    chainId: 4326,
+    name: "MegaETH",
+    nativeToken: {
+      symbol: "ETH",
+      decimals: 18
+    },
+    explorer: {
+      name: "MegaETH Blockscout",
+      url: "https://megaeth.blockscout.com"
+    },
+    rpcs: [
+      "https://mainnet.megaeth.com/rpc"
+    ],
+    // MegaETH supports realtime_sendRawTransaction for instant receipts (<10ms finality)
+    realtimeRpc: "realtime_sendRawTransaction"
   }
 };
 
