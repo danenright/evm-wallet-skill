@@ -8,7 +8,7 @@
  *   node src/transfer.js <chain> <to> <amount> --gas-price 0    # Send with custom gas price
  */
 
-import { parseEther, parseUnits, formatEther, parseAbi, isAddress } from 'viem';
+import { parseEther, parseUnits, formatEther, parseAbi, isAddress, encodeFunctionData } from 'viem';
 import { printUpdateNag } from './check-update.js';
 import { getWalletClient, exists } from './lib/wallet.js';
 import { createPublicClientWithRetry } from './lib/rpc.js';
@@ -234,7 +234,7 @@ async function main() {
         account: walletAddress
       } : {
         to: tokenAddress,
-        data: walletClient.encodeFunctionData({
+        data: encodeFunctionData({
           abi: ERC20_ABI,
           functionName: 'transfer',
           args: [to, transferAmount]
